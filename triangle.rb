@@ -15,13 +15,13 @@
 #
 def triangle(a, b, c)
   case
+  when a <= 0 || b <= 0 || c <= 0
+    raise TriangleError
+  when (a+b <= c) || (a+c <= b) || (b+c <= a)
+    raise TriangleError
   when a == b && a == c
     return :equilateral
-  when a == b && a != c
-    return :isosceles
-  when a == c && a != b
-    return :isosceles
-  when b == c && a != b
+  when (a == b && a != c) || (a == c && a != b) || (b == c && a != b)
     return :isosceles
   when a != b && a != c
     return :scalene
